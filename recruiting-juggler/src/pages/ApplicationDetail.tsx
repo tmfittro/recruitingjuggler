@@ -17,8 +17,8 @@ import { Button } from '@/components/ui/Button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import { StatusBadge } from '@/components/ui/Badge'
 import { H1, Body, Caption } from '@/components/ui/Typography'
-import { sampleApplications } from '@/data/sampleApplications'
 import {
+  getApplication,
   getOverrides,
   setFollowUps as storeSetFollowUps,
   setNotes as storeSetNotes,
@@ -41,7 +41,7 @@ function isPastDue(dateStr: string): boolean {
 
 export default function ApplicationDetail() {
   const { id } = useParams<{ id: string }>()
-  const application = sampleApplications.find((a) => a.id === id)
+  const application = id ? getApplication(id) : undefined
 
   const overrides = id ? getOverrides(id) : {}
 

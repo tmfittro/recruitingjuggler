@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
 import { H1, Body, Caption } from '@/components/ui/Typography'
 import { ApplicationCard } from '@/components/ApplicationCard'
-import { sampleApplications } from '@/data/sampleApplications'
+import { getApplications } from '@/data/applicationStore'
 import type { AppGroupStatus } from '@/types/application'
 import type { Application } from '@/types/application'
 
@@ -47,7 +47,7 @@ function groupApplications(apps: Application[]) {
 }
 
 export default function Dashboard() {
-  const applications = sampleApplications
+  const applications = getApplications()
   const grouped = groupApplications(applications)
   const hasAny = applications.length > 0
 
