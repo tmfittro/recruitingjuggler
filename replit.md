@@ -35,12 +35,21 @@ Helps college juniors and seniors maintain clarity and confidence during the job
 
 - `recruiting-juggler/src/App.tsx` — Router setup
 - `recruiting-juggler/src/components/Layout.tsx` — Global top nav + content shell
+- `recruiting-juggler/src/components/ApplicationCard.tsx` — Card component with urgency styling
 - `recruiting-juggler/src/components/ui/Button.tsx` — Button component (primary/secondary/ghost/danger)
 - `recruiting-juggler/src/components/ui/Badge.tsx` — StatusBadge + Badge components
 - `recruiting-juggler/src/components/ui/Card.tsx` — Card, CardHeader, CardTitle, CardContent, CardFooter
+- `recruiting-juggler/src/types/application.ts` — Application + FollowUp TypeScript types
+- `recruiting-juggler/src/data/sampleApplications.ts` — 7 seed applications covering all status groups and urgency levels
+- `recruiting-juggler/src/pages/Dashboard.tsx` — Main dashboard with grouped list, counts, urgency, empty state
 - `recruiting-juggler/src/lib/utils.ts` — cn() utility for class merging
 - `recruiting-juggler/src/index.css` — Tailwind directives + global styles + component classes
 - `recruiting-juggler/tailwind.config.js` — Design tokens
+
+## Data Model
+
+Applications have: `id`, `company`, `role`, `stage` (ApplicationStatus badge), `status` (active/completed/inactive group), `nextStep`, `deadline`, `followUps[]`, `completedTasks[]`, `notes`.
+Urgency is computed from deadline: overdue (past), soon (≤48h), normal.
 
 ## Workflow
 
@@ -50,6 +59,5 @@ Helps college juniors and seniors maintain clarity and confidence during the job
 ## Future Work
 
 - Backend API (Node/Express) + Replit PostgreSQL for data persistence
-- Application CRUD forms
-- Dashboard with stats and pipeline view
+- Application CRUD forms (Add & Edit)
 - Application detail view with timeline/notes
