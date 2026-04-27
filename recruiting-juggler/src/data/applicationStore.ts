@@ -9,10 +9,63 @@ interface ApplicationOverrides {
   nextStepCompleted?: boolean
 }
 
-const interactiveOverrides: Record<string, ApplicationOverrides> = {}
-const applicationEdits: Record<string, Partial<Application>> = {}
-const customApplications: Application[] = []
-const deletedIds: Set<string> = new Set()
+interface PersistedState {
+  schemaVersion: number
+  customApplications: Application[]
+  applicationEdits: Record<string, Partial<Application>>
+  deletedIds: string[]
+  interactiveOverrides: Record<string, ApplicationOverrides>
+}
+
+const STORAGE_KEY = 'recruiting-juggler-state'
+const SCHEMA_VERSION = 1
+
+function loadState(): PersistedState {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    if (!raw) return defaultState()
+    const parsed = JSON.parse(raw) as PersistedState
+    if (parsed.schemaVersion !== SCHEMA_VERSION) {
+      localStorage.removeItem(STORAGE_KEY)
+      return defaultState()
+    }
+    return parsed
+  } catch {
+    localStorage.removeItem(STORAGE_KEY)
+    return defaultState()
+  }
+}
+
+function defaultState(): PersistedState {
+  return {
+    schemaVersion: SCHEMA_VERSION,
+    customApplications: [],
+    applicationEdits: {},
+    deletedIds: [],
+    interactiveOverrides: {},
+  }
+}
+
+function saveState() {
+  try {
+    const state: PersistedState = {
+      schemaVersion: SCHEMA_VERSION,
+      customApplications,
+      applicationEdits,
+      deletedIds: Array.from(deletedIds),
+      interactiveOverrides,
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  } catch {
+  }
+}
+
+const initial = loadState()
+
+let customApplications: Application[] = initial.customApplications
+let applicationEdits: Record<string, Partial<Application>> = initial.applicationEdits
+let interactiveOverrides: Record<string, ApplicationOverrides> = initial.interactiveOverrides
+const deletedIds: Set<string> = new Set(initial.deletedIds)
 
 export function stageToGroupStatus(stage: ApplicationStatus): AppGroupStatus {
   if (stage === 'rejected' || stage === 'offer') return 'completed'
@@ -44,6 +97,7 @@ export function addApplication(app: Omit<Application, 'id' | 'followUps' | 'comp
     completedTasks: [],
   }
   customApplications.push(newApp)
+  saveState()
   return newApp
 }
 
@@ -57,12 +111,14 @@ export function updateApplication(id: string, updates: Partial<Omit<Application,
   if (updates.notes !== undefined && interactiveOverrides[id]) {
     delete interactiveOverrides[id].notes
   }
+  saveState()
 }
 
 export function deleteApplication(id: string) {
   deletedIds.add(id)
   const customIdx = customApplications.findIndex((a) => a.id === id)
   if (customIdx !== -1) customApplications.splice(customIdx, 1)
+  saveState()
 }
 
 export function getOverrides(id: string): ApplicationOverrides {
@@ -71,12 +127,15 @@ export function getOverrides(id: string): ApplicationOverrides {
 
 export function setFollowUps(id: string, followUps: FollowUp[]) {
   interactiveOverrides[id] = { ...interactiveOverrides[id], followUps }
+  saveState()
 }
 
 export function setNotes(id: string, notes: string) {
   interactiveOverrides[id] = { ...interactiveOverrides[id], notes }
+  saveState()
 }
 
 export function setNextStepCompleted(id: string, completed: boolean) {
   interactiveOverrides[id] = { ...interactiveOverrides[id], nextStepCompleted: completed }
+  saveState()
 }
