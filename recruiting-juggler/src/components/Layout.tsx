@@ -4,23 +4,23 @@ import { Briefcase, LayoutDashboard, PlusCircle, Clock, CheckCircle, XCircle } f
 const navItems = [
   {
     label: 'Dashboard',
-    to: '/',
+    to: '/dashboard',
     end: true,
     icon: LayoutDashboard,
   },
   {
     label: 'Add Application',
-    to: '/applications/new',
+    to: '/dashboard/applications/new',
     end: true,
     icon: PlusCircle,
   },
 ]
 
 const statusLinks = [
-  { label: 'Applied',    to: '/?status=applied',   icon: Clock,         color: 'text-primary-400' },
-  { label: 'Interview',  to: '/?status=interview',  icon: Clock,         color: 'text-amber-500' },
-  { label: 'Offer',      to: '/?status=offer',      icon: CheckCircle,   color: 'text-green-500' },
-  { label: 'Rejected',   to: '/?status=rejected',   icon: XCircle,       color: 'text-red-400' },
+  { label: 'Applied',    to: '/dashboard?status=applied',   icon: Clock,         color: 'text-primary-400' },
+  { label: 'Interview',  to: '/dashboard?status=interview',  icon: Clock,         color: 'text-amber-500' },
+  { label: 'Offer',      to: '/dashboard?status=offer',      icon: CheckCircle,   color: 'text-green-500' },
+  { label: 'Rejected',   to: '/dashboard?status=rejected',   icon: XCircle,       color: 'text-red-400' },
 ]
 
 export default function Layout() {

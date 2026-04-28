@@ -36,7 +36,7 @@ export function ApplicationCard({ application }: ApplicationCardProps) {
   const urgency = getUrgency(deadline)
 
   return (
-    <Link to={`/applications/${id}`} className="block group focus:outline-none">
+    <Link to={`/dashboard/applications/${id}`} className="block group focus:outline-none">
       <Card
         className={cn(
           'transition-shadow hover:shadow-md group-focus:ring-2 group-focus:ring-primary-300',

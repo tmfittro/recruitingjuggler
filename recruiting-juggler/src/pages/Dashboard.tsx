@@ -63,7 +63,7 @@ export default function Dashboard() {
           <Body className="mt-0.5">Track and manage all your job applications</Body>
         </div>
         <Button asChild variant="primary" size="md">
-          <Link to="/applications/new">
+          <Link to="/dashboard/applications/new">
             <PlusCircle className="h-4 w-4" />
             Add Application
           </Link>
@@ -126,7 +126,7 @@ function EmptyState() {
           Start tracking your job search by adding your first application. Stay organized and never miss a deadline.
         </Body>
         <Button asChild variant="primary" size="sm">
-          <Link to="/applications/new">
+          <Link to="/dashboard/applications/new">
             <PlusCircle className="h-4 w-4" />
             Add your first application
           </Link>

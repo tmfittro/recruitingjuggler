@@ -121,17 +121,17 @@ export default function AddEditApplication() {
 
     if (isEditing && id) {
       updateApplication(id, payload)
-      navigate(`/applications/${id}`)
+      navigate(`/dashboard/applications/${id}`)
     } else {
       addApplication(payload)
-      navigate('/')
+      navigate('/dashboard')
     }
   }
 
   function handleDelete() {
     if (id) {
       deleteApplication(id)
-      navigate('/')
+      navigate('/dashboard')
     }
   }
 
@@ -140,7 +140,7 @@ export default function AddEditApplication() {
       <div>
         <div className="flex items-center gap-3 mb-6">
           <Button asChild variant="ghost" size="sm">
-            <Link to="/">
+            <Link to="/dashboard">
               <ArrowLeft className="h-4 w-4" />
               Back
             </Link>
@@ -159,7 +159,7 @@ export default function AddEditApplication() {
     <div>
       <div className="flex items-center gap-3 mb-6">
         <Button asChild variant="ghost" size="sm">
-          <Link to={isEditing ? `/applications/${id}` : '/'}>
+          <Link to={isEditing ? `/dashboard/applications/${id}` : '/dashboard'}>
             <ArrowLeft className="h-4 w-4" />
             Back
           </Link>
@@ -307,7 +307,7 @@ export default function AddEditApplication() {
 
             <div className="flex items-center gap-2">
               <Button asChild variant="secondary" size="sm">
-                <Link to={isEditing ? `/applications/${id}` : '/'}>Cancel</Link>
+                <Link to={isEditing ? `/dashboard/applications/${id}` : '/dashboard'}>Cancel</Link>
               </Button>
               <Button type="submit" variant="primary" size="sm">
                 {isEditing ? 'Save Changes' : 'Add Application'}
