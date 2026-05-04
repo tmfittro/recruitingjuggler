@@ -1,0 +1,92 @@
+Sprint goal: 100 tracked users visiting your application.
+
+ [PBI] Create a Google Analytics account and get a tracking code.
+
+   Visit https://analytics.google.comLinks to an external site.
+
+Click Start measuring
+
+Account name: name of your product, uncheck all data sharing settings, then click Next
+
+Property name: name of your product, then click Next
+
+Industry category: choose one, select Small for business size, then click Next
+
+Check to Understand web and/or app traffic, then click Create
+
+Accept the Terms of Service
+
+ 
+
+On the Start collecting data page, choose Web
+
+Website URL:  your custom domain, Stream name: web app, then click Create & continue
+
+ 
+
+A popup will appear with a <script> to use your Google Analytics. Copy this block of code and save it somewhere. In the <script> will be your Google ID. It will be formatted G-XXXXXXXXXXX. This block of code must be installed on each page you want to track.
+
+ 
+
+ 
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+
+ 
+
+ [PBI] Add the block of code to your application pages.
+
+   Prompt Replit to ask where to put the code.
+
+
+I want to use Google Analytics to track all of my pages. Where should I add the 
+Google <script> code so it is active on all of my web pages?
+
+   When Replit returns the location for the Google tracking scripts, edit the files in VSCode and paste in your script. It is usually either in <head> or just before body close </body>.
+
+   Commit.
+
+   Push.
+
+   Check that your app deployed correctly.
+
+ 
+
+ [PBI] Test that Google Analytics sees visitors to your pages.
+
+   From the https://analytics.google.comLinks to an external site. dashboard, in the left menu, click Reports.
+
+   Click Realtime overview.
+
+   Leave the Realtime overview dashboard up and visit your page from your phone, other computer, or have a friend visit your site. Leave the site loaded on the other device, give it a few minutes, and you should see the Realtime overview dashboard increment to 1. If this is happens, you can move on. If this does not happen, your analytics on your pages is not talking to Google Analytics. It is probably a problem with where you pasted your tracking <script> code. Troubleshoot or ask Mike for help.
+
+ 
+
+ [PBI] Begin an earnest attempt to drive people to your website. The goal is 100 unique visitors.
+
+   Set up at least two Google Analytics campaigns. 
+
+   Ask friends, family, and strangers to visit your site.
+
+   Get 100 visitors to your application!
+
+ 
+
+ [PBI]  Report on the visitors who came to your site.
+
+   Review your Google Analytics dashboard.
+
+   Using your Google Analytics results, create a report about visitors to your site. 
+
+Report template: BAIS3300_sprint3_GAreport.pptx
+
+   Rewrite the summary so it is relevant to your data. Delete my screenshots and add yours as proof of your traffic.
