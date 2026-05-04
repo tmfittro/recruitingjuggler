@@ -1,0 +1,11 @@
+{
+  "name": "recruiting-juggler-root",
+  "version": "0.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "start": "node recruiting-juggler/server.js"
+  }
+}
